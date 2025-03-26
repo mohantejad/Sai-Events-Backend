@@ -6,9 +6,9 @@ from pathlib import Path
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-DEBUG = os.getenv('DEBUG', default='False') == 'True'
-ALLOWED_HOSTS = ALLOWED_HOSTS = ["*"]
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+DEBUG = os.environ['DEBUG']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -57,20 +57,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'main.wsgi.application'
 
-os.environ.setdefault("PGDATABASE", "realestate_db")
-os.environ.setdefault("PGUSER", "postgres")
-os.environ.setdefault("PGPASSWORD", "postgres")
-os.environ.setdefault("PGHOST", "localhost")
-os.environ.setdefault("PGPORT", "5432")
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DB_NAME'],  
-        'USER': os.environ['DB_USER'],      
-        'PASSWORD': os.environ['DB_PASSWORD'],  
-        'HOST': os.environ['DB_HOST'],      
-        'PORT': os.environ['DB_PORT'],            
+        'NAME': os.environ['PGDATABASE'],  
+        'USER': os.environ['PGUSER'],      
+        'PASSWORD': os.environ['PGPASSWORD'],  
+        'HOST': os.environ['PGHOST'],      
+        'PORT': os.environ['PGPORT'],            
     }
 }
 
@@ -103,14 +97,14 @@ REST_FRAMEWORK = {
 
 }
 
-DOMAIN = os.getenv('DOMAIN')
-SITE_NAME = os.getenv('SITE_NAME')
+DOMAIN = os.environ['DOMAIN']
+SITE_NAME = os.environ['SITE_NAME']
 
 EMAIL_BACKEND = 'django_ses.SESBackend'
-DEFAULT_FROM_EMAIL = os.getenv('AWS_SES_FROM_EMAIL')
-AWS_SES_ACCESS_KEY_ID = os.getenv('AWS_SES_ACCESS_KEY_ID')
-AWS_SES_SECRET_ACCESS_KEY = os.getenv('AWS_SES_SECRET_ACCESS_KEY')
-AWS_SES_REGION_NAME = os.getenv('AWS_SES_REGION')
+DEFAULT_FROM_EMAIL = os.environ['AWS_SES_FROM_EMAIL']
+AWS_SES_ACCESS_KEY_ID = os.environ['AWS_SES_ACCESS_KEY_ID']
+AWS_SES_SECRET_ACCESS_KEY = os.environ['AWS_SES_SECRET_ACCESS_KEY']
+AWS_SES_REGION_NAME = os.environ['AWS_SES_REGION']
 AWS_SES_REGION_ENDPOINT = f'email.{AWS_SES_REGION_NAME}.amazonaws.com'
 USE_SES_V2 = True
 
@@ -132,7 +126,7 @@ DJOSER = {
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
     'USERNAME_RESET_SHOW_EMAIL_NOT_FOUND': True,
     'TOKEN_MODEL': None,
-    # 'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': os.getenv('REDIRECT_URLS').split(','),
+    # 'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': os.environ['REDIRECT_URLS').split(','),
     'SERIALIZERS': {
         'current_user': 'users.serializers.CurrentUserSerializer',
         'user_create': 'users.serializers.UserCreateSerializer',
@@ -147,7 +141,7 @@ DJOSER = {
 AUTH_COOKIE = 'access'
 AUTH_COOKIE_ACCESS_MAX_AGE = 60 * 60 * 24
 AUTH_COOKIE_REFRESH_MAX_AGE = 60 * 60 * 24 * 5
-AUTH_COOKIE_SECURE = os.getenv('AUTH_COOKIE_SECURE', 'True') == 'True'
+AUTH_COOKIE_SECURE = os.environ['AUTH_COOKIE_SECURE']
 AUTH_COOKIE_HTTP_ONLY = True
 AUTH_COOKIE_PATH = '/'
 AUTH_COOKIE_SAME_SITE = 'None'
@@ -159,20 +153,20 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
