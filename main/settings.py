@@ -9,7 +9,10 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEBUG = os.environ['DEBUG']
-ALLOWED_HOSTS = ['event-manager-backend-production-c3c4.up.railway.app']
+ALLOWED_HOSTS = [
+    'event-manager-backend-production-c3c4.up.railway.app',
+    'localhost',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -148,6 +151,8 @@ AUTH_COOKIE_SECURE = os.environ['AUTH_COOKIE_SECURE']
 AUTH_COOKIE_HTTP_ONLY = True
 AUTH_COOKIE_PATH = '/'
 AUTH_COOKIE_SAME_SITE = 'None'
+CORS_ALLOW_CREDENTIALS = True 
+CSRF_COOKIE_SECURE = True
 
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
