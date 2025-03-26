@@ -2,6 +2,7 @@ from datetime import timedelta
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+import dj_database_url
 
 load_dotenv()
 
@@ -57,15 +58,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'main.wsgi.application'
 
+DATABASE_URL = os.environ['DATABASE_URL']
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['PGDATABASE'],  
-        'USER': os.environ['PGUSER'],      
-        'PASSWORD': os.environ['PGPASSWORD'],  
-        'HOST': os.environ['PGHOST'],      
-        'PORT': os.environ['PGPORT'],            
-    }
+    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
+    # {
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': os.environ['PGDATABASE'],  
+        # 'USER': os.environ['PGUSER'],      
+        # 'PASSWORD': os.environ['PGPASSWORD'],  
+        # 'HOST': os.environ['PGHOST'],      
+        # 'PORT': os.environ['PGPORT'],            
+    # }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
