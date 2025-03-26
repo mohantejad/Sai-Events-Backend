@@ -8,7 +8,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEBUG = os.environ['DEBUG']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://event-manager-backend-production-c3c4.up.railway.app/']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
