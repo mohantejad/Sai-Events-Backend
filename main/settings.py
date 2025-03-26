@@ -155,9 +155,14 @@ SIMPLE_JWT = {
    'REFRESH_TOKEN_LIFETIME': timedelta(days=3),
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://event-manager-backend-production-c3c4.up.railway.app',
+]
+
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'https://event-manager-backend-production-c3c4.up.railway.app',
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
