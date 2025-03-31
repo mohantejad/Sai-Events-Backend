@@ -49,12 +49,6 @@ class CustomAbstractUser(AbstractBaseUser, PermissionsMixin):
         regex=r'^\+?1?\d{9,15}$',
         message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
     )
-    
-    USER_TYPE_CHOICES = [
-        ("BUYER", "Buyer"),
-        ("SELLER", "Seller"),
-        ("AGENT", "Real Estate Agent"),
-    ]
 
     first_name = models.CharField(_("first name"), max_length=150, blank=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
@@ -77,12 +71,6 @@ class CustomAbstractUser(AbstractBaseUser, PermissionsMixin):
         storage=pp_fs,
         blank=True,
         null=True
-    )
-    user_type = models.CharField(
-        _('user type'),
-        max_length=10,
-        choices=USER_TYPE_CHOICES,
-        default='BUYER'
     )
     is_staff = models.BooleanField(
         _("staff status"),

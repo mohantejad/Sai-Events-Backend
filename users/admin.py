@@ -53,12 +53,12 @@ class UserAdmin(BaseUserAdmin):
 
     inlines = [AddressInline]
 
-    list_display = ['email', 'first_name', 'last_name', 'user_type', 'is_active', 'is_staff']
-    list_filter = ["is_superuser", 'is_staff', 'user_type']
+    list_display = ['email', 'first_name', 'last_name', 'is_active', 'is_staff']
+    list_filter = ["is_superuser", 'is_staff']
     search_fields = ('email', 'first_name', 'last_name', 'phone_number')
     ordering = ('email',)
     fieldsets = (
-        (_("Personal Info"), {"fields": ("first_name", "last_name", "email", "phone_number", "profile_picture", "user_type")}),
+        (_("Personal Info"), {"fields": ("first_name", "last_name", "email", "phone_number", "profile_picture")}),
         (_("Permissions"), {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")}),
         (_("Important Dates"), {"fields": ("last_login", "date_joined")}),
     )
