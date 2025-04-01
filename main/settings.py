@@ -9,11 +9,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 DEBUG = os.getenv("DEBUG", "False") == "True"
-ALLOWED_HOSTS = [
-    'event-manager-backend-production-c3c4.up.railway.app',
-    'localhost',
-    '127.0.0.1'
-]
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS').split(' ')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -76,10 +72,10 @@ if DEBUG:
         }
     }
 else:
-    # DATABASE_URL = os.getenv("DATABASE_PUBLIC_URL")
+    DATABASE_URL = os.getenv("DATABASE_PUBLIC_URL")
     DATABASES = {
         'default': dj_database_url.config(
-            default='postgresql://sai_events_db_user:K9kYFkK6UzzK5Mar5wT2sS2FhVuwJTAv@dpg-cvlrhmpr0fns73cgha9g-a/sai_events_db_database',
+            default=DATABASE_URL,
             conn_max_age=600
         )
     }
@@ -105,12 +101,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 FILE_UPLOAD_PERMISSIONS = 0o640
 if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# STORAGES = {
-#     "staticfiles": {
-#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-#     },
-# }
 
 
 REST_FRAMEWORK = {
